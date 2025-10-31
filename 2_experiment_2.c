@@ -2,11 +2,20 @@
 
 int main()
 {
-    int length = 10;
-    int width = 20;
-    int area = length * width;
-    printf("Area: %d\n", area);
-    int perimeter = 2 * (length + width);
-    printf("Perimeter: %d\n", perimeter);
+    float length, width, area, perimeter;
+
+    printf("Enter the length of the rectangle: ");
+    scanf("%f", &length);
+
+    printf("Enter the width of the rectangle: ");
+    scanf("%f", &width);
+
+    area = length * width;
+    perimeter = 2 * (length + width);
+
+    printf("Area of the rectangle: %.2f\n", area);
+    printf("Perimeter of the rectangle: %.2f\n", perimeter);
+
     return 0;
 }
+
