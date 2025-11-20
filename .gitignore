@@ -1,0 +1,15 @@
+# Ignore executables
+*.exe
+*.out
+*.o
+*.obj
+
+# Ignore VS Code settings
+.vscode/
+
+# Ignore macOS system files
+.DS_Store
+
+#exec
+question_*
+!*.c
