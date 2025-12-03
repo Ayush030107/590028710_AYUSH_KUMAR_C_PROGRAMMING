@@ -1,56 +1,38 @@
 #include <stdio.h>
 #include <string.h>
-#include <ctype.h>
 
-typedef union {
-	int i;
-	float f;
-	char str[20];
-} Data;
+union Data {
+    int i;
+    float f;
+    char str[20];
+};
 
-static void print_bytes(const char *label, const char *buf, size_t n) {
-	printf("%s (hex): ", label);
-	for (size_t k = 0; k < n; k++)
-		printf("%02x ", (unsigned char)buf[k]);
-	printf("\n");
-}
+int main() {
+    union Data data;
 
-static void print_union_state(const Data *d) {
-	printf("union.i = %d\n", d->i);
-	printf("union.f = %f\n", d->f);
+    printf("Enter an integer: ");
+    scanf("%d", &data.i);
 
-	printf("union.str (as text): \"");
-	for (size_t k = 0; k < sizeof(d->str); k++) {
-		unsigned char c = (unsigned char)d->str[k];
-		putchar(isprint(c) ? c : '.');
-	}
-	printf("\"\n");
-	print_bytes("union.str bytes", d->str, sizeof(d->str));
-	printf("---\n");
-}
+    printf("\nAfter assigning data.i:\n");
+    printf("data.i   = %d\n", data.i);
+    printf("data.f   = %f\n", data.f);
+    printf("data.str = %s\n\n", data.str);
 
-int main(void) {
-	Data d;
+    printf("Enter a float: ");
+    scanf("%f", &data.f);
 
-	printf("--- Union demo (Data) ---\n");
+    printf("\nAfter assigning data.f:\n");
+    printf("data.i   = %d\n", data.i);
+    printf("data.f   = %f\n", data.f);
+    printf("data.str = %s\n\n", data.str);
 
-	memset(&d, 0, sizeof(d));
-	d.i = 123456;
-	printf("After assigning d.i = 123456:\n");
-	print_union_state(&d);
+    printf("Enter a string: ");
+    scanf("%s", data.str);
 
-	memset(&d, 0, sizeof(d));
-	d.f = 3.14159f;
-	printf("After assigning d.f = 3.14159:\n");
-	print_union_state(&d);
+    printf("\nAfter assigning data.str:\n");
+    printf("data.i   = %d\n", data.i);
+    printf("data.f   = %f\n", data.f);
+    printf("data.str = %s\n", data.str);
 
-	memset(&d, 0, sizeof(d));
-	strncpy(d.str, "Hello, union!", sizeof(d.str));
-	d.str[sizeof(d.str) - 1] = '\0';
-	printf("After assigning d.str = \"Hello, union!\":\n");
-	print_union_state(&d);
-
-	printf("Note: A union stores a single value; assigning one member overwrites the others.\n");
-
-	return 0;
+    return 0;
 }

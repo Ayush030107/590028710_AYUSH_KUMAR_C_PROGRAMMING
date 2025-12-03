@@ -5,12 +5,14 @@ struct Rectangle {
     int breadth;
 };
 
-struct Rectangle inputRectangle(void) {
+struct Rectangle inputRectangle() {
     struct Rectangle r;
     printf("Enter length: ");
-    if (scanf("%d", &r.length) != 1) r.length = 0;
+    scanf("%d", &r.length);
+    
     printf("Enter breadth: ");
-    if (scanf("%d", &r.breadth) != 1) r.breadth = 0;
+    scanf("%d", &r.breadth);
+
     return r;
 }
 
@@ -18,9 +20,11 @@ int area(struct Rectangle r) {
     return r.length * r.breadth;
 }
 
-int main(void) {
-    struct Rectangle rect = inputRectangle();
-    int a = area(rect);
-    printf("Area = %d\n", a);
+int main() {
+    struct Rectangle rect;
+    rect = inputRectangle();
+
+    printf("Area of Rectangle = %d\n", area(rect));
+
     return 0;
 }
